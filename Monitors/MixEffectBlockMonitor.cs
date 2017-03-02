@@ -78,8 +78,8 @@ namespace ATEMVisionSwitcher
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput:
                         if (ProgramInput != null)
                         {
-                            ProgramInput(this, null);
                             Console.sendVerbose("Program Input Has Changed On ME " + _id + " (" + _number + ")");
+                            ProgramInput(this, null);
                         }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdTransitionFramesRemaining:

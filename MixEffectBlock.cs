@@ -220,7 +220,7 @@ namespace ATEMVisionSwitcher
             _meBlock = meBlock;
             _id = id;
             _number = number;
-            _monitor = new MixEffectBlockMonitor(Console,id, number);
+            _monitor = new MixEffectBlockMonitor(Console, id, number);
 
             //Add the monitor to the callback
             _meBlock.AddCallback(_monitor);
@@ -240,6 +240,18 @@ namespace ATEMVisionSwitcher
         }
 
         //Change the program
+        public Boolean ChangeProgram(long id)
+        {
+            try
+            {
+                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, id);
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Change Program Input On Mix Effect Block " + _id + " To Input " + id + "\nMore Information:\n" + e); }
+            return false;
+        }
+
+        //Change the program
         public Boolean ChangePreview(Input input)
         {
             try
@@ -250,6 +262,19 @@ namespace ATEMVisionSwitcher
             catch (Exception e) { Console.sendError("Could Not Change Preview Input On Mix Effect Block " + _id + " To Input " + input.LongName + "(" + input.Id + ")\nMore Information:\n" + e); }
             return false;
         }
+
+        //Change the program
+        public Boolean ChangePreview(long id)
+        {
+            try
+            {
+                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, id);
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Change Preview Input On Mix Effect Block " + _id + " To Input " + id + "\nMore Information:\n" + e); }
+            return false;
+        }
+
 
         //Get a property id
         public long GetPropertyId(_BMDSwitcherMixEffectBlockPropertyId id)
