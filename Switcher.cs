@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ATEMVisionSwitcher
 {
-    class Switcher
+    public class Switcher
     {
         private IBMDSwitcher _switcher;
         private CBMDSwitcherDiscovery _discovery;

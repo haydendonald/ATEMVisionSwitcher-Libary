@@ -32,6 +32,17 @@ namespace ATEMVisionSwitcher
         private String _ipAddress;
         private String _productName;
 
+        //Properties
+        public DebugConsole DebugConsole { get { return Console; } }
+        public Switcher Switcher { get { return _switcher; } }
+        public Inputs Inputs { get { return _inputs; } }
+        public Keyers Keyers { get { return _keyers; } }
+        public MixEffectBlocks MixEffectBlocks { get { return _mixEffectBlocks; } }
+        public Status CurrentStatus { get { return _status; } }
+        public PowerStatus CurrentPowerStatus { get { return _powerStatus; } }
+        public String IpAddress { get { return _ipAddress; } }
+        public String ProductName { get { return _productName; } }
+
         //Constructor
         public ATEM_VisionSwitcher(DebugConsole.DebugLevel debugLevel = DebugConsole.DebugLevel.Important)
         {
