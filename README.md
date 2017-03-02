@@ -1,4 +1,4 @@
-# ATEM Vision Switcher Libary Development Branch
+# ATEM Vision Switcher Libary
 
 Currently in development created by Hayden Donald.
 
