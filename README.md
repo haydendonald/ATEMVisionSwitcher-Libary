@@ -40,7 +40,7 @@ Not Complete.
 
 
 ##Using The API
-To use the API download the .dll from the release folder and include it in your references
+To use the API download the development DLL from /bin/debug and include it in your references of your solution
 
 ####Using Visual Studio
 Right Click References -> Browse -> Select the downloaded dll
