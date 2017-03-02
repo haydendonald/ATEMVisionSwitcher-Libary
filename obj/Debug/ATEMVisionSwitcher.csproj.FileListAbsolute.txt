@@ -1,0 +1,5 @@
+C:\Users\Hayden\Documents\KardiniaChurch\Projects\KardiniaController\ATEMVisionSwitcher\bin\Debug\ATEMVisionSwitcher.dll
+C:\Users\Hayden\Documents\KardiniaChurch\Projects\KardiniaController\ATEMVisionSwitcher\bin\Debug\ATEMVisionSwitcher.pdb
+C:\Users\Hayden\Documents\KardiniaChurch\Projects\KardiniaController\ATEMVisionSwitcher\obj\Debug\ATEMVisionSwitcher.dll
+C:\Users\Hayden\Documents\KardiniaChurch\Projects\KardiniaController\ATEMVisionSwitcher\obj\Debug\ATEMVisionSwitcher.pdb
+C:\Users\Hayden\Documents\KardiniaChurch\Projects\KardiniaController\ATEMVisionSwitcher\obj\Debug\ATEMVisionSwitcher.csprojResolveAssemblyReference.cache
