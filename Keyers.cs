@@ -50,6 +50,7 @@ namespace ATEMVisionSwitcher
 
 
             //Get the upstream keyers
+            int j = 0;
             foreach(MixEffectBlock i in meBlocks)
             {
                 IBMDSwitcherKeyIterator usIterator = null;
@@ -61,7 +62,7 @@ namespace ATEMVisionSwitcher
                 //Make sure that the usIterator is not null
                 if (usIterator == null) { Console.sendError("UpStream Keyer Iterator Is Null"); return ATEM_VisionSwitcher.Status.KeyerDiscoverFailed; }
 
-                for (int j = 0; true; j++)
+                while(true)
                 {
                     IBMDSwitcherKey tempUSKeyer = null;
                     usIterator.Next(out tempUSKeyer);
@@ -71,14 +72,15 @@ namespace ATEMVisionSwitcher
 
                     _upstreamKeyers.Add(new UpstreamKeyer(Console, tempUSKeyer, j));
                     if (_upstreamKeyers[j] == null) { Console.sendError("Upstream Keyer " + j + " Is Null"); return ATEM_VisionSwitcher.Status.KeyerDiscoverFailed; }
+                    j++;
                 }
             }
 
 
             Console.sendInfo("Found Upstream Keyers: ");
-            foreach(UpstreamKeyer i in _upstreamKeyers) { Console.sendTabInfo("ID: " + i.Id); }
+            foreach(UpstreamKeyer i in _upstreamKeyers) { Console.sendTabInfo("ID: " + i.Id + " (" + i.Number + ")"); }
             Console.sendInfo("Found Downstream Keyers: ");
-            foreach (DownstreamKeyer i in _downstreamKeyers) { Console.sendTabInfo("ID: " + i.Id); }
+            foreach (DownstreamKeyer i in _downstreamKeyers) { Console.sendTabInfo("ID: " + i.Id + " (" + i.Number + ")"); }
 
             return ATEM_VisionSwitcher.Status.Success;
         }

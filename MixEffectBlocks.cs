@@ -17,11 +17,24 @@ namespace ATEMVisionSwitcher
         //Properties
         public List<MixEffectBlock> meBlocks { get { return _mixEffectBlocks; } }
 
+        //Constructor
         public MixEffectBlocks(ref DebugConsole debugConsole)
         {
             Console = debugConsole;
             _mixEffectBlocks = new List<MixEffectBlock> { };
             Console.sendVerbose("Created MixEffectBlocks Object");
+        }
+
+        //Change Program
+        public Boolean ChangeProgram(int meId, Input input)
+        {
+            return _mixEffectBlocks[meId - 1].ChangeProgram(input);
+        }
+
+        //Change Preview
+        public Boolean ChangePreview(int meId, Input input)
+        {
+            return _mixEffectBlocks[meId - 1].ChangePreview(input);
         }
 
         //Discover the mixeffectblocks

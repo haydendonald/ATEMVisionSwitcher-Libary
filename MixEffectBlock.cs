@@ -17,17 +17,17 @@ namespace ATEMVisionSwitcher
 
         //Properties
         public IBMDSwitcherMixEffectBlock meBlock { get { return _meBlock; } }
-        long Id { get { return _id; } }
+        public long Id { get { return _id; } }
 
-        Boolean FadeToBlackInTransition { get { return PropertyIdFadeToBlackInTransition == 1; } }
-        Boolean InFadeToBlack { get { return PropertyIdInFadeToBlack == 1; } }
-        Boolean InTransition { get { return PropertyIdInTransition == 1; } }
-        Boolean PreviewLive { get { return PropertyIdPreviewLive == 1; } }
-        Input PreviewInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdPreviewInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Preview On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null;  } }
-        Input ProgramInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdProgramInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Program On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null; } }
+        public Boolean FadeToBlackInTransition { get { return PropertyIdFadeToBlackInTransition == 1; } }
+        public Boolean InFadeToBlack { get { return PropertyIdInFadeToBlack == 1; } }
+        public Boolean InTransition { get { return PropertyIdInTransition == 1; } }
+        public Boolean PreviewLive { get { return PropertyIdPreviewLive == 1; } }
+        public Input PreviewInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdPreviewInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Preview On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null;  } }
+        public Input ProgramInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdProgramInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Program On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null; } }
 
         //Property Ids
-        long PropertyIdFadeToBlackFramesRemaining
+        public long PropertyIdFadeToBlackFramesRemaining
         {
             get
             {
@@ -41,7 +41,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdFadeToBlackFullyBlack
+        public long PropertyIdFadeToBlackFullyBlack
         {
             get
             {
@@ -55,7 +55,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdFadeToBlackInTransition
+        public long PropertyIdFadeToBlackInTransition
         {
             get
             {
@@ -69,7 +69,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdFadeToBlackRate
+        public long PropertyIdFadeToBlackRate
         {
             get
             {
@@ -83,7 +83,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdInFadeToBlack
+        public long PropertyIdInFadeToBlack
         {
             get
             {
@@ -97,7 +97,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdInputAvailabilityMask
+        public long PropertyIdInputAvailabilityMask
         {
             get
             {
@@ -111,7 +111,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdInTransition
+        public long PropertyIdInTransition
         {
             get
             {
@@ -125,7 +125,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdPreviewInput
+        public long PropertyIdPreviewInput
         {
             get
             {
@@ -139,7 +139,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdPreviewLive
+        public long PropertyIdPreviewLive
         {
             get
             {
@@ -153,7 +153,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdPreviewTransition
+        public long PropertyIdPreviewTransition
         {
             get
             {
@@ -167,7 +167,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdProgramInput
+        public long PropertyIdProgramInput
         {
             get
             {
@@ -181,7 +181,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdTransitionFramesRemaining
+        public long PropertyIdTransitionFramesRemaining
         {
             get
             {
@@ -195,7 +195,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-        long PropertyIdTransitionPosition
+        public long PropertyIdTransitionPosition
         {
             get
             {
@@ -236,7 +236,7 @@ namespace ATEMVisionSwitcher
         } 
 
         //Change the program
-        public Boolean ChangeProgram(SwitcherInput input)
+        public Boolean ChangeProgram(Input input)
         {
             try
             {
@@ -248,7 +248,7 @@ namespace ATEMVisionSwitcher
         }
 
         //Change the program
-        public Boolean ChangePreview(SwitcherInput input)
+        public Boolean ChangePreview(Input input)
         {
             try
             {
