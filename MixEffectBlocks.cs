@@ -67,6 +67,7 @@ namespace ATEMVisionSwitcher
             Console.sendVerbose("Successfully Discovered The Mix Effect Block(s)");
 
             Console.sendInfo("Found " + _mixEffectBlocks.Count + " Mix Effect Blocks");
+            foreach(MixEffectBlock i in _mixEffectBlocks) { Console.sendTabInfo("ID: " + i.Id + "(" + i.Number + ")"); }
 
             return ATEM_VisionSwitcher.Status.Success;
         }

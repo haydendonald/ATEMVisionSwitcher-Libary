@@ -64,5 +64,13 @@ namespace ATEMVisionSwitcher
             _switcher.Discover(ipAddress);
             return Status.Unknown;
         }
+
+        //Disconnect from the switcher
+        public Status Disconnect()
+        {
+            Console.sendInfo("Disconnecting From The Switcher");
+            _switcher = new Switcher(ref Console);
+            return Status.Success;
+        }
     }
 }

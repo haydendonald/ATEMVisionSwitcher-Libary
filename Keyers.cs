@@ -14,6 +14,7 @@ namespace ATEMVisionSwitcher
         List<UpstreamKeyer> _upstreamKeyers;
         List<DownstreamKeyer> _downstreamKeyers;
 
+
         public Keyers(ref DebugConsole debugConsole)
         {
             Console = debugConsole;

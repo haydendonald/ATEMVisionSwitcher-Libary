@@ -12,12 +12,15 @@ namespace ATEMVisionSwitcher
         private IBMDSwitcherMixEffectBlock _meBlock;
         private MixEffectBlockMonitor _monitor;
         private List<SwitcherInput> _inputs;
-        private long _id;
+        private String _id;
+        private long _number;
         private DebugConsole Console;
 
         //Properties
         public IBMDSwitcherMixEffectBlock meBlock { get { return _meBlock; } }
-        public long Id { get { return _id; } }
+        public MixEffectBlockMonitor Monitor { get { return _monitor; } }
+        public String Id { get { return _id; } }
+        public long Number { get { return _number; } }
 
         public Boolean FadeToBlackInTransition { get { return PropertyIdFadeToBlackInTransition == 1; } }
         public Boolean InFadeToBlack { get { return PropertyIdInFadeToBlack == 1; } }
@@ -211,29 +214,18 @@ namespace ATEMVisionSwitcher
         }
 
         //Constructor
-        public MixEffectBlock(DebugConsole console, IBMDSwitcherMixEffectBlock meBlock, List<SwitcherInput> inputs, long id)
+        public MixEffectBlock(DebugConsole console, IBMDSwitcherMixEffectBlock meBlock, List<SwitcherInput> inputs, long number, String id = "Not Set")
         {
             Console = console;
             _meBlock = meBlock;
             _id = id;
-            _monitor = new MixEffectBlockMonitor();
+            _number = number;
+            _monitor = new MixEffectBlockMonitor(Console,id, number);
 
             //Add the monitor to the callback
             _meBlock.AddCallback(_monitor);
             _inputs = inputs;
         }
-
-        //Deconstructor
-        ~MixEffectBlock()
-        {
-            try
-            {
-                _meBlock.RemoveCallback(_monitor);
-                _id = -1;
-                _meBlock = null;
-            }
-            catch (Exception e) { Console.sendError("Could Not Release Mix Effect Block " + _id + "\nMore Information:\n" + e); }
-        } 
 
         //Change the program
         public Boolean ChangeProgram(Input input)
