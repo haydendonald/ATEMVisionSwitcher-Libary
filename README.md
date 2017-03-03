@@ -14,7 +14,7 @@ The project is currently not tested. It is however being developed with a ATEM M
 Alot of features!
 
 ##Known Issues
-There seems to be a issue casting a COM object, however i think its only when sending a command while recieving. Exmaple: You add a event to be called when the program input changes to change the program input. This causes the error.
+There seems to be a issue casting a COM object, however i think its only when sending a command while recieving. Example: You add a event to be called when the program input changes to change the program input. This causes the error.
 
 ##API Information
 
