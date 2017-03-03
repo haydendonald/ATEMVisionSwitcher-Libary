@@ -68,7 +68,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackInTransition, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackInTransition From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackInTransition From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -82,7 +82,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackRate, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackRate From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackRate From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -96,7 +96,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInFadeToBlack, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInFadeToBlack From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInFadeToBlack From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -110,7 +110,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInputAvailabilityMask, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInputAvailabilityMask From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInputAvailabilityMask From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -124,7 +124,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInTransition, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInTransition From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdInTransition From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -138,7 +138,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewInput From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewInput From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -152,7 +152,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewLive, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewLive From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewLive From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -166,7 +166,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewTransition, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewTransition From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewTransition From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -180,7 +180,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdProgramInput From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdProgramInput From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -194,7 +194,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdTransitionFramesRemaining, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdTransitionFramesRemaining From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdTransitionFramesRemaining From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -208,7 +208,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdTransitionPosition, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdTransitionPosition From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdTransitionPosition From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -226,6 +226,12 @@ namespace ATEMVisionSwitcher
             _meBlock.AddCallback(_monitor);
             _inputs = inputs;
         }
+
+        //Get the program
+        public Input GetProgram() { return ProgramInput; }
+
+        //Get the preview
+        public Input GetPreview() { return PreviewInput; }
 
         //Change the program
         public Boolean ChangeProgram(Input input)

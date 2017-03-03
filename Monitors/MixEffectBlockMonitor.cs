@@ -18,7 +18,7 @@ namespace ATEMVisionSwitcher
         {
             Console = console;
             id = _id;
-            number = _number;
+            _number = number;
 
             Console.sendVerbose("Created MixEffectBlockMonitor Object For Mix Effect Block " + id + " (" + number + ")");
         }
@@ -46,34 +46,74 @@ namespace ATEMVisionSwitcher
                 switch (propId)
                 {
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackFramesRemaining:
-                        FadeToBlackFramesRemaining(this, null);
+                        if (FadeToBlackFramesRemaining != null)
+                        {
+                            Console.sendVerbose("Fade To Black Frames Remaining Has Changed On ME " + _id + " (" + _number + ")");
+                            FadeToBlackFramesRemaining(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackFullyBlack:
-                        FadeToBlackFullyBlack(this, null);
+                        if (FadeToBlackFullyBlack != null)
+                        {
+                            Console.sendVerbose("Fade To Black Fully Black Has Changed On ME " + _id + " (" + _number + ")");
+                            FadeToBlackFullyBlack(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackInTransition:
-                        FadeToBlackInTransition(this, null);
+                        if (FadeToBlackInTransition != null)
+                        {
+                            Console.sendVerbose("Fade To Black In Transition Has Changed On ME " + _id + " (" + _number + ")");
+                            FadeToBlackInTransition(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackRate:
-                        FadeToBlackRate(this, null);
+                        if (FadeToBlackRate != null)
+                        {
+                            Console.sendVerbose("Fade To Black Rate Has Changed On ME " + _id + " (" + _number + ")");
+                            FadeToBlackRate(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInFadeToBlack:
-                        InFadeToBlack(this, null);
+                        if (InFadeToBlack != null)
+                        {
+                            Console.sendVerbose("In Fade To Black Has Changed On ME " + _id + " (" + _number + ")");
+                            FadeToBlackInTransition(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInputAvailabilityMask:
-                        InputAvailabilityMask(this, null);
+                        if (InputAvailabilityMask != null)
+                        {
+                            Console.sendVerbose("Input Availability Mask Has Changed On ME " + _id + " (" + _number + ")");
+                            InputAvailabilityMask(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInTransition:
-                        InTransition(this, null);
+                        if (InTransition != null)
+                        {
+                            Console.sendVerbose("In Transition Has Changed On ME " + _id + " (" + _number + ")");
+                            InTransition(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput:
-                        PreviewInput(this, null);
+                        if (PreviewInput != null)
+                        {
+                            Console.sendVerbose("Preview Input Has Changed On ME " + _id + " (" + _number + ")");
+                            PreviewInput(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewLive:
-                        PreviewLive(this, null);
+                        if (PreviewLive != null)
+                        {
+                            Console.sendVerbose("Preview Live Has Changed On ME " + _id + " (" + _number + ")");
+                            PreviewLive(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewTransition:
-                        PreviewTransition(this, null);
+                        if (PreviewTransition != null)
+                        {
+                            Console.sendVerbose("Preview Transition Has Changed On ME " + _id + " (" + _number + ")");
+                            PreviewTransition(this, null);
+                        }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput:
                         if (ProgramInput != null)
@@ -90,9 +130,12 @@ namespace ATEMVisionSwitcher
                         }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdTransitionPosition:
-                        if (TransitionPosition != null) { TransitionPosition(this, null); }
+                        if (TransitionPosition != null)
+                        {
+                            Console.sendVerbose("Transition Position Has Changed On ME " + _id + " (" + _number + ")");
+                            PreviewInput(this, null);
+                        }
                         break;
-
                 }
             }
             catch { }
