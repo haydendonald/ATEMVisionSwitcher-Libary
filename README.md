@@ -41,9 +41,27 @@ Not Complete.
 
 Not Complete.
 
-
 ##Using The API
 To use the API download the development DLL from /bin/debug and include it in your references of your solution
 
 ####Using Visual Studio
 Right Click References -> Browse -> Select the downloaded dll
+
+##Development Notes
+####Done
+####Keyers Object
+| Object | Tested |
+|---------|----------|
+| DownstreamKeyer  | No | 
+| UpstreamKeyer  | No | 
+| Keyers  | No | 
+| Keyer  | No | 
+| Input  | No | 
+| SwitcherInput  | No | 
+| AuxInput  | No |
+| DebugConsole  | Yes |
+| DownstreamKeyerMonitor  | No |
+| UpstreamKeyerMonitor  | No |
+| MixEffectBlockMonitor  | No |
+
+
