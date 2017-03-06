@@ -56,11 +56,14 @@ Right Click References -> Browse -> Select the downloaded dll
 | Keyers  | No | 
 | Keyer  | No | 
 | Input  | No | 
-| SwitcherInput  | DOES NOT HAVE A MONITOR, OR RELEASE | 
-| AuxInput  | DOES NOT HAVE A MONITOR, OR RELEASE |
+| SwitcherInput  | 
+| AuxInput  |
 | DebugConsole  | Yes |
 | DownstreamKeyerMonitor  | No |
 | UpstreamKeyerMonitor  | No |
 | MixEffectBlockMonitor  | No |
+| SwitcherInputMonitor  | No |
+| AuxInputMonitor  | No |
+
 
 
