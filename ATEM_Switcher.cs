@@ -18,7 +18,8 @@ namespace ATEMVisionSwitcher
         public enum Status
         {
             Unknown, NoResponse, IncompatibleFirmware, Success, Disconnected, Connected, InvalidIPAddress, KeyerDiscoverFailed,
-            MixEffectBlockDiscoverFailed, InputDiscoverFailed, AuxInputDiscoverFailed, SwitcherDiscoverFailed, InternalError
+            MixEffectBlockDiscoverFailed, InputDiscoverFailed, AuxInputDiscoverFailed, SwitcherDiscoverFailed, InternalError,
+            InputReleaseFailed, MixEffectBlockReleaseFailed, KeyerReleaseFailed
         };
         public enum PowerStatus { PSU1Failed, PSU2Failed, Good, Unknown }
 

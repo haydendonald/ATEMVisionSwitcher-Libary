@@ -85,7 +85,14 @@ namespace ATEMVisionSwitcher
         public ATEM_VisionSwitcher.Status Release()
         {
             Console.sendInfo("Releasing Inputs");
-            foreach(SwitcherInput i in _switcherInputs) { i.rel}
+            try
+            {
+                foreach (SwitcherInput i in _switcherInputs) { i.Release(); }
+                foreach (AuxInput i in _auxInputs) { i.Release(); }
+                return ATEM_VisionSwitcher.Status.Success;
+            }
+            catch(Exception e) { Console.sendError("Could Not Release Inputs\nMore Information:\n" + e); return ATEM_VisionSwitcher.Status.InputReleaseFailed; }
+
         }
 
     }
