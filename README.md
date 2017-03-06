@@ -56,8 +56,8 @@ Right Click References -> Browse -> Select the downloaded dll
 | Keyers  | No | 
 | Keyer  | No | 
 | Input  | No | 
-| SwitcherInput  | No | 
-| AuxInput  | No |
+| SwitcherInput  | DOES NOT HAVE A MONITOR, OR RELEASE | 
+| AuxInput  | DOES NOT HAVE A MONITOR, OR RELEASE |
 | DebugConsole  | Yes |
 | DownstreamKeyerMonitor  | No |
 | UpstreamKeyerMonitor  | No |
