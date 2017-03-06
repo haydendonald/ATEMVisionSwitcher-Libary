@@ -1,8 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+	ATEM Vision Switcher Libary By Hayden Donald 2017
+	https://github.com/haydendonald/ATEMVisionSwitcher-Libary
+
+	This libary is repsonsible for the interfacing with the Black Magic ATEM Vision Switcher using the given api
+    found at https://www.blackmagicdesign.com/support
+*/
+
+using System;
 using BMDSwitcherAPI;
 
 namespace ATEMVisionSwitcher
@@ -17,7 +21,7 @@ namespace ATEMVisionSwitcher
         public DownstreamKeyerMonitor(DebugConsole console, String id, long number)
         {
             Console = console;
-            id = _id;
+            _id = id;
             _number = number;
 
             Console.sendVerbose("Created DownstreamKeyerMonitor Object For Mix Effect Block " + id + " (" + number + ")");
@@ -30,7 +34,6 @@ namespace ATEMVisionSwitcher
         public event EventHandler InputCutChanged;
         public event EventHandler InputFillChanged;
         public event EventHandler InverseChanged;
-        public event EventHandler TypeInverseChanged;
         public event EventHandler IsAutoTransitioningChanged;
         public event EventHandler IsTransitioningChanged;
         public event EventHandler MaskBottomChanged;
@@ -86,10 +89,10 @@ namespace ATEMVisionSwitcher
                         }
                         break;
                     case _BMDSwitcherDownstreamKeyEventType.bmdSwitcherDownstreamKeyEventTypeInverseChanged:
-                        if (TypeInverseChanged != null)
+                        if (InverseChanged != null)
                         {
                             Console.sendVerbose("Inverse Changed Has Changed On Downstream Keyer " + _id + " (" + _number + ")");
-                            TypeInverseChanged(this, null);
+                            InverseChanged(this, null);
                         }
                         break;
                     case _BMDSwitcherDownstreamKeyEventType.bmdSwitcherDownstreamKeyEventTypeIsAutoTransitioningChanged:

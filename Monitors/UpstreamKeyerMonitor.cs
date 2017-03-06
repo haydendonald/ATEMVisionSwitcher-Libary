@@ -1,8 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+	ATEM Vision Switcher Libary By Hayden Donald 2017
+	https://github.com/haydendonald/ATEMVisionSwitcher-Libary
+
+	This libary is repsonsible for the interfacing with the Black Magic ATEM Vision Switcher using the given api
+    found at https://www.blackmagicdesign.com/support
+*/
+
+using System;
 using BMDSwitcherAPI;
 
 namespace ATEMVisionSwitcher
@@ -17,7 +21,7 @@ namespace ATEMVisionSwitcher
         public UpstreamKeyerMonitor(DebugConsole console, String id, long number)
         {
             Console = console;
-            id = _id;
+            _id = id;
             _number = number;
 
             Console.sendVerbose("Created UpstreamKeyerMonitor Object For Mix Effect Block " + id + " (" + number + ")");
