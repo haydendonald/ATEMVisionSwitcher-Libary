@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 /**
 	ATEM Vision Switcher Libary By Hayden Donald 2017
-	http://github.com/haydendonald
+	https://github.com/haydendonald/ATEMVisionSwitcher-Libary
 
 	This libary is repsonsible for the interfacing with the Black Magic ATEM Vision Switcher using the given api
     found at https://www.blackmagicdesign.com/support
