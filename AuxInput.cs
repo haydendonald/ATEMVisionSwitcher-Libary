@@ -14,9 +14,12 @@ namespace ATEMVisionSwitcher
     public class AuxInput : Input
     {
         private IBMDSwitcherInputAux _object;
+        private AuxInputMonitor _monitor;
         private DebugConsole Console;
 
         //Properties
+        public IBMDSwitcherInputAux Object { get { return _object; } }
+        public AuxInputMonitor Monitor { get { return _monitor; } }
         public long InputSource
         {
             get
@@ -119,9 +122,24 @@ namespace ATEMVisionSwitcher
         public AuxInput(DebugConsole console, IBMDSwitcherInputAux input)
         {
             Console = console;
+            _monitor = new AuxInputMonitor(Console, LongName, Id);
             _object = input;
 
             Console.sendVerbose("Created Aux Input Object For Input " + LongName + "(" + Id + ")");
+        }
+
+        //Release
+        public Boolean Release()
+        {
+            try
+            {
+                _object.RemoveCallback(_monitor);
+                _monitor = new AuxInputMonitor(Console, LongName, Id);
+                _object = null;
+                Console.sendVerbose("Released AuxInput " + LongName + " (" + ")" + Id);
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Release AuxInput " + LongName + " (" + ")" + Id + "\nMore Information:\n" + e); return false; }
         }
     }
 }

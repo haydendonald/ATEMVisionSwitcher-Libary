@@ -9,7 +9,7 @@
 using System;
 using BMDSwitcherAPI;
 
-namespace ATEMVisionSwitcher.Monitors
+namespace ATEMVisionSwitcher
 {
     public class AuxInputMonitor : IBMDSwitcherInputAuxCallback
     {
