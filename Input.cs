@@ -16,5 +16,7 @@ namespace ATEMVisionSwitcher
         String ShortName { get; set; }
         String LongName { get; set; }
         long Id { get; }
+
+        Boolean Release();
     }
 }

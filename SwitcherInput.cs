@@ -14,6 +14,7 @@ namespace ATEMVisionSwitcher
     public class SwitcherInput : Input
     {
         private IBMDSwitcherInput _object;
+        private SwitcherInputMonitor _monitor;
         private DebugConsole Console;
 
         //Properties
@@ -190,6 +191,20 @@ namespace ATEMVisionSwitcher
                 return true;
             }
             catch (Exception e) { Console.sendError("Could Not ResetNames On SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return false; }
+        }
+
+        //Release
+        public Boolean Release()
+        {
+            try
+            {
+                _object.RemoveCallback(_monitor);
+                _monitor = new SwitcherInputMonitor(Console, LongName, Id);
+                _object = null;
+                Console.sendVerbose("Released SwitcherInput " + LongName + " (" + ")" + Id);
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Release SwitcherInput " + LongName + " (" + ")" + Id + "\nMore Information:\n" + e); return false; }
         }
     }
 }

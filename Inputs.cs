@@ -23,7 +23,6 @@ namespace ATEMVisionSwitcher
         public List<SwitcherInput> SwitcherInputs { get { return _switcherInputs; } }
         public List<AuxInput> AuxInputs { get { return _auxInputs; } }
 
-
         public Inputs(ref DebugConsole debugConsole)
         {
             Console = debugConsole;
@@ -81,5 +80,13 @@ namespace ATEMVisionSwitcher
 
             return ATEM_VisionSwitcher.Status.Success;
         }
+
+        //Release the inputs
+        public ATEM_VisionSwitcher.Status Release()
+        {
+            Console.sendInfo("Releasing Inputs");
+            foreach(SwitcherInput i in _switcherInputs) { i.rel}
+        }
+
     }
 }
