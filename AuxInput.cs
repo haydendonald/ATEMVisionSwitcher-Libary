@@ -1,55 +1,127 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+	ATEM Vision Switcher Libary By Hayden Donald 2017
+	https://github.com/haydendonald/ATEMVisionSwitcher-Libary
+
+	This libary is repsonsible for the interfacing with the Black Magic ATEM Vision Switcher using the given api
+    found at https://www.blackmagicdesign.com/support
+*/
+
+using System;
 using BMDSwitcherAPI;
 
 namespace ATEMVisionSwitcher
 {
     public class AuxInput : Input
     {
-        private IBMDSwitcherInputAux _input;
+        private IBMDSwitcherInputAux _object;
         private DebugConsole Console;
 
         //Properties
-        //Find an input
-        public static AuxInput Find(List<AuxInput> inputs, long id)
+        public long InputSource
         {
-            foreach (AuxInput i in inputs)
+            get
             {
-                if (i.Id == id) { return i; }
+                long value = -1;
+                try
+                {
+                    _object.GetInputSource(out value);
+                    Console.sendVerbose("Got InputSource From AuxInput " + LongName + " (" + Id + ") = " + value);
+                    return value;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get InputSource From AuxInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
             }
-
-            return null;
+            set
+            {
+                try
+                {
+                    _object.SetInputSource(value);
+                    Console.sendVerbose("Set InputSource On AuxInput" + LongName + " (" + Id + ") To " + value);
+                }
+                catch (Exception e) { Console.sendError("Could Not Set InputSource On AuxInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+            }
+        }
+        public _BMDSwitcherInputAvailability InputAvailabilityMask
+        {
+            get
+            {
+                _BMDSwitcherInputAvailability value = new _BMDSwitcherInputAvailability();
+                try
+                {
+                    _object.GetInputAvailabilityMask(out value);
+                    Console.sendVerbose("Got InputAvailabilityMask From AuxInput " + LongName + " (" + Id + ") = " + value);
+                    return value;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get InputAvailabilityMask From AuxInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+            }
+        }
+        public String ShortName
+        {
+            get
+            {
+                String value = "Invalid";
+                try
+                {
+                    ((IBMDSwitcherInput)_object).GetShortName(out value);
+                    Console.sendVerbose("Got ShortName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    return value;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get ShortName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+            }
+            set
+            {
+                try
+                {
+                    ((IBMDSwitcherInput)_object).SetShortName(value);
+                    Console.sendVerbose("Set ShortName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
+                }
+                catch (Exception e) { Console.sendError("Could Not Set ShortName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+            }
+        }
+        public String LongName
+        {
+            get
+            {
+                String value = "Invalid";
+                try
+                {
+                    ((IBMDSwitcherInput)_object).GetLongName(out value);
+                    Console.sendVerbose("Got LongName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    return value;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get LongName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+            }
+            set
+            {
+                try
+                {
+                    ((IBMDSwitcherInput)_object).SetLongName(value);
+                    Console.sendVerbose("Set LongName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
+                }
+                catch (Exception e) { Console.sendError("Could Not Set LongName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+            }
+        }
+        public long Id
+        {
+            get
+            {
+                long value = -1;
+                try
+                {
+                    ((IBMDSwitcherInput)_object).GetInputId(out value);
+                    Console.sendVerbose("Got InputId From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    return value;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get InputId From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+            }
         }
 
         //Constructor
         public AuxInput(DebugConsole console, IBMDSwitcherInputAux input)
         {
             Console = console;
-            _input = input;
-
-            String tempShortName;
-            String tempLongName;
-            long tempId;
-            ((IBMDSwitcherInput)_input).GetShortName(out tempShortName);
-            ((IBMDSwitcherInput)_input).GetLongName(out tempLongName);
-            ((IBMDSwitcherInput)_input).GetInputId(out tempId);
-
-            ShortName = tempShortName;
-            LongName = tempLongName;
-            Id = tempId;
+            _object = input;
 
             Console.sendVerbose("Created Aux Input Object For Input " + LongName + "(" + Id + ")");
-        }
-
-        //Change the input source
-        public Boolean ChangeInputSource(Input input)
-        {
-            try { _input.SetInputSource(input.Id); Console.sendInfo("Set Input Source Of Aux Input " + LongName + " To " + input.LongName + "(" + input.Id + ")"); return true; }
-            catch (Exception e) { Console.sendError("Failed To Set Input Source On Aux Input " + LongName + "\nError Information:\n" + e); }
-            return false;
         }
     }
 }

@@ -11,7 +11,7 @@ using BMDSwitcherAPI;
 
 namespace ATEMVisionSwitcher
 {
-    class UpstreamKeyer
+    class UpstreamKeyer : Keyer
     {
         DebugConsole Console;
         IBMDSwitcherKey _object;
@@ -20,8 +20,8 @@ namespace ATEMVisionSwitcher
         String _id;
 
         //Properties
-        public long Number { get { return _number; } }
-        public String Id { get { return _id; } }
+        public long Number { get { return _number; }}
+        public String Id { get { return _id; } set { _id = value; } }
         public IBMDSwitcherKey Object { get { return _object; } }
         public UpstreamKeyerMonitor Monitor { get { return _monitor; } }
         public _BMDSwitcherInputAvailability CutInputAvailabilityMask
@@ -306,13 +306,6 @@ namespace ATEMVisionSwitcher
                 return true;
             }
             catch(Exception e) { Console.sendError("Could Not Release Upstream Keyer " + _id + " (" + ")" + _number + "\nMore Information:\n" + e); return false; }
-        }
-
-        //Update the keyers id
-        public void SetId(String id)
-        {
-            if (id != null) { _id = id; }
-            else { Console.sendWarning("Could Not Set Id To Upstream Keyer " + _number + " Because The Id Was Null"); }
         }
     }
 }

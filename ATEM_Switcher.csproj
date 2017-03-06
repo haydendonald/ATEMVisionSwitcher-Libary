@@ -49,6 +49,7 @@
     <Compile Include="AuxInput.cs" />
     <Compile Include="DebugConsole.cs" />
     <Compile Include="DownstreamKeyer.cs" />
+    <Compile Include="Keyer.cs" />
     <Compile Include="Monitors\DownstreamKeyerMonitor.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Inputs.cs" />

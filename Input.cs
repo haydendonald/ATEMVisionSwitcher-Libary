@@ -1,34 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+	ATEM Vision Switcher Libary By Hayden Donald 2017
+	https://github.com/haydendonald/ATEMVisionSwitcher-Libary
+
+	This libary is repsonsible for the interfacing with the Black Magic ATEM Vision Switcher using the given api
+    found at https://www.blackmagicdesign.com/support
+*/
+
+using System;
 
 namespace ATEMVisionSwitcher
 {
-    public abstract class Input
+    public interface Input
     {
-        private long _id;
-        private String _shortName;
-        private String _longName;
-
         //Properties
-        public String ShortName
-        {
-            get { return _shortName; }
-            set { _shortName = value; }
-        }
-
-        public String LongName
-        {
-            get { return _longName; }
-            set { _longName = value; }
-        }
-
-        public long Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        String ShortName { get; set; }
+        String LongName { get; set; }
+        long Id { get; }
     }
 }

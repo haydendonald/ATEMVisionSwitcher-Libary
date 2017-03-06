@@ -222,7 +222,7 @@ namespace ATEMVisionSwitcher
             {
                 try
                 {
-                    if (value == true) { _object.SetMasked(1); }else { _object.SetMasked(0); }
+                    if (value == true) { _object.SetMasked(1); } else { _object.SetMasked(0); }
                     Console.sendVerbose("Set Masked On Downstream Keyer " + _id + " (" + _number + ") To " + value);
                 }
                 catch (Exception e) { Console.sendError("Could Not Set Masked On Downstream Keyer " + _id + " (" + _number + ") To " + value + "\nMore Information:\n" + e); }
@@ -342,7 +342,7 @@ namespace ATEMVisionSwitcher
             {
                 try
                 {
-                    if (value == true) { _object.SetPreMultiplied(1); }else { _object.SetPreMultiplied(0); }
+                    if (value == true) { _object.SetPreMultiplied(1); } else { _object.SetPreMultiplied(0); }
                     Console.sendVerbose("Set PreMultiplied On Downstream Keyer " + _id + " (" + _number + ") To " + value);
                 }
                 catch (Exception e) { Console.sendError("Could Not Set PreMultiplied On Downstream Keyer " + _id + " (" + _number + ") To " + value + "\nMore Information:\n" + e); }
@@ -411,7 +411,7 @@ namespace ATEMVisionSwitcher
                 _object.PerformAutoTransition();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.sendError("Could Not Perform An Auto Transition On Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
                 return false;
@@ -433,4 +433,5 @@ namespace ATEMVisionSwitcher
                 return false;
             }
         }
+    }
 }
