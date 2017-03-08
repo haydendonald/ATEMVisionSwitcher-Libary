@@ -65,5 +65,17 @@ Right Click References -> Browse -> Select the downloaded dll
 | SwitcherInputMonitor  | No |
 | AuxInputMonitor  | No |
 
-
+####Inputs Class Todo
+| Method |
+|---------|
+| AvailableExternalPortTypes | 
+| CurrentExternalPortType |
+| Id | 
+| InputAvailability |
+| LongName | 
+| PortType |
+| PreviewTallied | 
+| ProgramTallied |
+| ResetNames | 
+| ShortName |
 
