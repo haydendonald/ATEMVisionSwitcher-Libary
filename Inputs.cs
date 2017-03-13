@@ -68,8 +68,6 @@ namespace ATEMVisionSwitcher
             foreach (SwitcherInput i in inputs) { returnList.Add(i.AvailableExternalPortTypes); }
             return returnList;
         }
-        public void SetAvailableExternalPortTypes(Keyer keyer, Boolean value = true) { keyer.OnAir = value; }
-        public void SetAvailableExternalPortTypes(List<Keyer> keyers, Boolean value) { foreach (Keyer i in keyers) { i.OnAir = value; } }
 
         //CurrentExternalPortType
         public _BMDSwitcherExternalPortType GetCurrentExternalPortType(SwitcherInput input) { return input.CurrentExternalPortType; }
@@ -127,7 +125,31 @@ namespace ATEMVisionSwitcher
             return returnList;
         }
 
-        #endregion 
+        #endregion
+
+        #region AuxInput Properties
+
+        //InputSource
+        public long GetInputSource(AuxInput input) { return input.InputSource; }
+        public List<long> GetInputSource(List<AuxInput> inputs)
+        {
+            List<long> returnList = new List<long> { };
+            foreach (AuxInput i in inputs) { returnList.Add(i.InputSource); }
+            return returnList;
+        }
+        public void SetInputSource(AuxInput input, long value) { input.InputSource = value; }
+        public void SetInputSource(List<AuxInput> inputs, long value) { foreach (AuxInput i in inputs) { i.InputSource = value; } }
+
+        //InputAvailabilityMask
+        public _BMDSwitcherInputAvailability GetInputAvailabilityMask(AuxInput input) { return input.InputAvailabilityMask; }
+        public List<_BMDSwitcherInputAvailability> GetInputAvailabilityMask(List<AuxInput> inputs)
+        {
+            List<_BMDSwitcherInputAvailability> returnList = new List<_BMDSwitcherInputAvailability> { };
+            foreach (AuxInput i in inputs) { returnList.Add(i.InputAvailabilityMask); }
+            return returnList;
+        }
+
+        #endregion
 
         public Inputs(ref DebugConsole debugConsole)
         {
