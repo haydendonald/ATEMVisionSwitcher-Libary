@@ -21,6 +21,8 @@ namespace ATEMVisionSwitcher
         private long _id;
 
         //Properties
+        public SwitcherInputMonitor Monitor { get { return _monitor; } }
+
         public _BMDSwitcherExternalPortType AvailableExternalPortTypes
         {
             get

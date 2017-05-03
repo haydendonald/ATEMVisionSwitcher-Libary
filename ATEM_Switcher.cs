@@ -62,8 +62,19 @@ namespace ATEMVisionSwitcher
         public Status Connect(String ipAddress)
         {
             Console.sendInfo("Attempting To Connect To The Switcher At " + ipAddress);
-            _switcher.Discover(ipAddress);
-            return Status.Unknown;
+
+            //Check if the ip is valid
+            if (CheckIPAddress(ipAddress)) {
+
+                if(_switcher.Discover(ipAddress) == Status.Success)
+                {
+                    return Status.Connected;
+                }
+            }
+            else { return Status.InvalidIPAddress; }
+
+            return Status.InternalError;
+
         }
 
         //Disconnect from the switcher
@@ -72,6 +83,14 @@ namespace ATEMVisionSwitcher
             Console.sendInfo("Disconnecting From The Switcher");
             _switcher = new Switcher(ref Console);
             return Status.Success;
+        }
+
+        //Check if the IP Address is valid, will return VALID if valid, else will return the issue
+        private Boolean CheckIPAddress(String ipAddr)
+        {
+            if (ipAddr.Length < 7) { return false; }
+            if (Regex.IsMatch(ipAddr, @"^[a-zA-Z]+$")) { return false; }
+            return true;
         }
     }
 }

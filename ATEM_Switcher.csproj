@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,11 +60,22 @@
     <Compile Include="MixEffectBlocks.cs" />
     <Compile Include="Monitors\MixEffectBlockMonitor.cs" />
     <Compile Include="Monitors\SwitcherInputMonitor.cs" />
+    <Compile Include="ProgramButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProgramButton.Designer.cs">
+      <DependentUpon>ProgramButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="SwitcherInput.cs" />
     <Compile Include="UpstreamKeyer.cs" />
     <Compile Include="Monitors\UpstreamKeyerMonitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProgramButton.resx">
+      <DependentUpon>ProgramButton.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
