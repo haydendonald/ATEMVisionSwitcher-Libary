@@ -10,17 +10,17 @@ namespace ATEMVisionSwitcher
     public class MixEffectBlock
     {
         private IBMDSwitcherMixEffectBlock _meBlock;
-        private MixEffectBlockMonitor _monitor;
         private List<SwitcherInput> _inputs;
+        private MixEffectBlockMonitor _monitor;
         private String _id;
         private long _number;
         private DebugConsole Console;
 
         //Properties
         public IBMDSwitcherMixEffectBlock meBlock { get { return _meBlock; } }
-        public MixEffectBlockMonitor Monitor { get { return _monitor; } }
         public String Id { get { return _id; } }
         public long Number { get { return _number; } }
+        public MixEffectBlockMonitor Monitor { get { return _monitor; } }
 
         public Boolean FadeToBlackInTransition { get { return PropertyIdFadeToBlackInTransition == 1; } }
         public Boolean InFadeToBlack { get { return PropertyIdInFadeToBlack == 1; } }
@@ -134,7 +134,7 @@ namespace ATEMVisionSwitcher
             {
                 try
                 {
-                    long value;
+                    long value = -1;
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, out value);
                     return value;
                 }
@@ -170,6 +170,7 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
+
         public long PropertyIdProgramInput
         {
             get
@@ -220,7 +221,7 @@ namespace ATEMVisionSwitcher
             _meBlock = meBlock;
             _id = id;
             _number = number;
-            _monitor = new MixEffectBlockMonitor(Console, id, number);
+            _monitor = new MixEffectBlockMonitor(Console, _id, _number);
 
             //Add the monitor to the callback
             _meBlock.AddCallback(_monitor);

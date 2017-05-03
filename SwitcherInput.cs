@@ -16,6 +16,9 @@ namespace ATEMVisionSwitcher
         private IBMDSwitcherInput _object;
         private SwitcherInputMonitor _monitor;
         private DebugConsole Console;
+        private String _longName;
+        private String _shortName;
+        private long _id;
 
         //Properties
         public _BMDSwitcherExternalPortType AvailableExternalPortTypes
@@ -26,10 +29,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetAvailableExternalPortTypes(out value);
-                    Console.sendVerbose("Got AvailableExternalPortTypes From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got AvailableExternalPortTypes From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get AvailableExternalPortTypes From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get AvailableExternalPortTypes From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
         }
         public _BMDSwitcherExternalPortType CurrentExternalPortType
@@ -40,10 +43,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetCurrentExternalPortType(out value);
-                    Console.sendVerbose("Got AvailableExternalPortTypes From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got AvailableExternalPortTypes From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get AvailableExternalPortTypes From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get AvailableExternalPortTypes From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
@@ -63,7 +66,7 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetInputAvailability(out value);
-                    Console.sendVerbose("Got InputAvailability From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got InputAvailability From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
                 catch (Exception e) { Console.sendError("Could Not Get InputAvailability From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
@@ -77,10 +80,11 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetInputId(out value);
-                    Console.sendVerbose("Got InputId From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _id = value;
+                    Console.sendVerbose("Got InputId From SwitcherInput " + _longName + " = " + _id);
+                    return _id;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get InputId From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get InputId From SwitcherInput" + _longName + "\nMore Information:\n" + e); return value; }
             }
         }
         public String ShortName
@@ -91,19 +95,21 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetShortName(out value);
-                    Console.sendVerbose("Got ShortName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _shortName = value;
+                    Console.sendVerbose("Got ShortName From SwitcherInput " + _longName + " (" + _id + ") = " + _shortName);
+                    return _shortName;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get ShortName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get ShortName From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
                 try
                 {
                     _object.SetShortName(value);
+                    _shortName = value;
                     Console.sendVerbose("Set ShortName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
                 }
-                catch (Exception e) { Console.sendError("Could Not Set ShortName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Set ShortName On SwitcherInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
             }
         }
         public String LongName
@@ -114,19 +120,21 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetLongName(out value);
-                    Console.sendVerbose("Got LongName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _longName = value;
+                    Console.sendVerbose("Got LongName From SwitcherInput " + _longName + " (" + _id + ") = " + _longName);
+                    return _longName;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get LongName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get LongName From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
                 try
                 {
                     _object.SetLongName(value);
-                    Console.sendVerbose("Set LongName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
+                    _longName = value;
+                    Console.sendVerbose("Set LongName On SwitcherInput (" + Id + ") To " + value);
                 }
-                catch (Exception e) { Console.sendError("Could Not Set LongName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Set LongName On SwitcherInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
             }
         }
         public _BMDSwitcherPortType PortType
@@ -137,10 +145,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetPortType(out value);
-                    Console.sendVerbose("Got PortType From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got PortType From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get PortType From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get PortType From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
         }
         public Boolean PreviewTallied
@@ -151,10 +159,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.IsPreviewTallied(out value);
-                    Console.sendVerbose("Got PreviewTallied From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got PreviewTallied From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value == 1;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get PreviewTallied From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value == 1; }
+                catch (Exception e) { Console.sendError("Could Not Get PreviewTallied From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value == 1; }
             }
         }
         public Boolean ProgramTallied
@@ -165,10 +173,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.IsProgramTallied(out value);
-                    Console.sendVerbose("Got ProgramTallied From SwitcherInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got ProgramTallied From SwitcherInput " + _longName + " (" + _id + ") = " + value);
                     return value == 1;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get ProgramTallied From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value == 1; }
+                catch (Exception e) { Console.sendError("Could Not Get ProgramTallied From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value == 1; }
             }
         }
 
@@ -177,8 +185,10 @@ namespace ATEMVisionSwitcher
         {
             Console = console;
             _object = input;
+            _shortName = LongName;
+            _longName = ShortName;
 
-            Console.sendVerbose("Created Input Object For Input " + LongName + "(" + Id + ")");
+            Console.sendVerbose("Created Input Object For Input " + _longName + "(" + _id + ")");
         }
 
         //Reset Names
@@ -187,10 +197,12 @@ namespace ATEMVisionSwitcher
             try
             {
                 _object.ResetNames();
-                Console.sendVerbose("ResetNames On SwitcherInput " + LongName + " (" + Id + ")");
+                _longName = "";
+                _shortName = "";
+                Console.sendVerbose("ResetNames On SwitcherInput " + _longName + " (" + _id + ")");
                 return true;
             }
-            catch (Exception e) { Console.sendError("Could Not ResetNames On SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return false; }
+            catch (Exception e) { Console.sendError("Could Not ResetNames On SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return false; }
         }
 
         //Release
@@ -199,12 +211,12 @@ namespace ATEMVisionSwitcher
             try
             {
                 _object.RemoveCallback(_monitor);
-                _monitor = new SwitcherInputMonitor(Console, LongName, Id);
+                _monitor = new SwitcherInputMonitor(Console, _longName, _id);
                 _object = null;
-                Console.sendVerbose("Released SwitcherInput " + LongName + " (" + ")" + Id);
+                Console.sendVerbose("Released SwitcherInput " + _longName + " (" + ")" + _id);
                 return true;
             }
-            catch (Exception e) { Console.sendError("Could Not Release SwitcherInput " + LongName + " (" + ")" + Id + "\nMore Information:\n" + e); return false; }
+            catch (Exception e) { Console.sendError("Could Not Release SwitcherInput " + _longName + " (" + ")" + _id + "\nMore Information:\n" + e); return false; }
         }
     }
 }

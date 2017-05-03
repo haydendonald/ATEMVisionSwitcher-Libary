@@ -43,11 +43,6 @@ namespace ATEMVisionSwitcher
             Console.sendVerbose("Created Switcher Object");
         }
 
-        ~Switcher()
-        {
-            Console.sendError("REMOVED!!!");
-        }
-
         //Discover the switcher
         public ATEM_VisionSwitcher.Status Discover(String ipAddress)
         {

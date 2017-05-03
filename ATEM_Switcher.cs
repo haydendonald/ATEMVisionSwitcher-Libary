@@ -24,7 +24,7 @@ namespace ATEMVisionSwitcher
         public enum PowerStatus { PSU1Failed, PSU2Failed, Good, Unknown }
 
         private DebugConsole Console;
-        private Switcher _switcher;
+        public Switcher _switcher;
         private Inputs _inputs;
         private Keyers _keyers;
         private MixEffectBlocks _mixEffectBlocks;

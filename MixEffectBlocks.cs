@@ -10,8 +10,8 @@ namespace ATEMVisionSwitcher
 {
     public class MixEffectBlocks
     {
-        DebugConsole Console;
-        List<MixEffectBlock> _mixEffectBlocks;
+        private DebugConsole Console;
+        private List<MixEffectBlock> _mixEffectBlocks;
 
         //Properties
         public List<MixEffectBlock> meBlocks { get { return _mixEffectBlocks; } }

@@ -11,7 +11,7 @@ using BMDSwitcherAPI;
 
 namespace ATEMVisionSwitcher
 {
-    class UpstreamKeyerMonitor : IBMDSwitcherKeyCallback
+    public class UpstreamKeyerMonitor : IBMDSwitcherKeyCallback
     {
         private DebugConsole Console;
         private String _id;

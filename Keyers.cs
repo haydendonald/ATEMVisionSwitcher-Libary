@@ -29,6 +29,10 @@ namespace ATEMVisionSwitcher
             Console.sendVerbose("Created Keyers Object");
         }
 
+        //Objects
+        public List<UpstreamKeyer> UpstreamKeyers { get { return _upstreamKeyers; } }
+        public List<DownstreamKeyer> DownstreamKeyers { get { return _downstreamKeyers; } }
+
         //On Air
         public Boolean GetOnAir(Keyer keyer) { return keyer.OnAir; }
         public List<Boolean> GetOnAir(List<Keyer> keyers)

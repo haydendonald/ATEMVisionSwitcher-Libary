@@ -16,6 +16,9 @@ namespace ATEMVisionSwitcher
         private IBMDSwitcherInputAux _object;
         private AuxInputMonitor _monitor;
         private DebugConsole Console;
+        private String _longName;
+        private String _shortName;
+        private long _id;
 
         //Properties
         public IBMDSwitcherInputAux Object { get { return _object; } }
@@ -28,19 +31,19 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetInputSource(out value);
-                    Console.sendVerbose("Got InputSource From AuxInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got InputSource From AuxInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get InputSource From AuxInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get InputSource From AuxInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
                 try
                 {
                     _object.SetInputSource(value);
-                    Console.sendVerbose("Set InputSource On AuxInput" + LongName + " (" + Id + ") To " + value);
+                    Console.sendVerbose("Set InputSource On AuxInput" + _longName + " (" + _id + ") To " + value);
                 }
-                catch (Exception e) { Console.sendError("Could Not Set InputSource On AuxInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Set InputSource On AuxInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
             }
         }
         public _BMDSwitcherInputAvailability InputAvailabilityMask
@@ -51,10 +54,10 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     _object.GetInputAvailabilityMask(out value);
-                    Console.sendVerbose("Got InputAvailabilityMask From AuxInput " + LongName + " (" + Id + ") = " + value);
+                    Console.sendVerbose("Got InputAvailabilityMask From AuxInput " + _longName + " (" + _id + ") = " + value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get InputAvailabilityMask From AuxInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get InputAvailabilityMask From AuxInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
         }
         public String ShortName
@@ -65,19 +68,21 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     ((IBMDSwitcherInput)_object).GetShortName(out value);
-                    Console.sendVerbose("Got ShortName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _shortName = value;
+                    Console.sendVerbose("Got ShortName From SwitcherInput " + _longName + " (" + _id + ") = " + _shortName);
+                    return _shortName;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get ShortName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get ShortName From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
                 try
                 {
                     ((IBMDSwitcherInput)_object).SetShortName(value);
-                    Console.sendVerbose("Set ShortName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
+                    _shortName = value;
+                    Console.sendVerbose("Set ShortName On SwitcherInput" + _longName + " (" + _id + ") To " + value);
                 }
-                catch (Exception e) { Console.sendError("Could Not Set ShortName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Set ShortName On SwitcherInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
             }
         }
         public String LongName
@@ -88,19 +93,21 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     ((IBMDSwitcherInput)_object).GetLongName(out value);
-                    Console.sendVerbose("Got LongName From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _longName = value;
+                    Console.sendVerbose("Got LongName From SwitcherInput " + _longName + " (" + _id + ") = " + _longName);
+                    return _longName;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get LongName From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get LongName From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
             set
             {
                 try
                 {
                     ((IBMDSwitcherInput)_object).SetLongName(value);
-                    Console.sendVerbose("Set LongName On SwitcherInput" + LongName + " (" + Id + ") To " + value);
+                    _longName = value;
+                    Console.sendVerbose("Set LongName On SwitcherInput" + _longName + " (" + _id + ") To " + _longName);
                 }
-                catch (Exception e) { Console.sendError("Could Not Set LongName On SwitcherInput " + LongName + " (" + Id + ") To " + value + "\nMore Information:\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Set LongName On SwitcherInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
             }
         }
         public long Id
@@ -111,10 +118,11 @@ namespace ATEMVisionSwitcher
                 try
                 {
                     ((IBMDSwitcherInput)_object).GetInputId(out value);
-                    Console.sendVerbose("Got InputId From SwitcherInput " + LongName + " (" + Id + ") = " + value);
-                    return value;
+                    _id = value;
+                    Console.sendVerbose("Got InputId From SwitcherInput " + _longName + " (" + _id + ") = " + _id);
+                    return _id;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get InputId From SwitcherInput " + LongName + " (" + Id + ")\nMore Information:\n" + e); return value; }
+                catch (Exception e) { Console.sendError("Could Not Get InputId From SwitcherInput " + _longName + " (" + _id + ")\nMore Information:\n" + e); return value; }
             }
         }
 
@@ -122,10 +130,13 @@ namespace ATEMVisionSwitcher
         public AuxInput(DebugConsole console, IBMDSwitcherInputAux input)
         {
             Console = console;
-            _monitor = new AuxInputMonitor(Console, LongName, Id);
             _object = input;
+            _monitor = new AuxInputMonitor(Console, LongName, Id);
+            _shortName = ShortName;
+            _longName = LongName;
+            _id = Id;
 
-            Console.sendVerbose("Created Aux Input Object For Input " + LongName + "(" + Id + ")");
+            Console.sendVerbose("Created Aux Input Object For Input " + _longName + "(" + _id + ")");
         }
 
         //Release

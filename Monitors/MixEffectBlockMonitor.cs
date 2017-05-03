@@ -24,7 +24,7 @@ namespace ATEMVisionSwitcher
             _id = id;
             _number = number;
 
-            Console.sendVerbose("Created MixEffectBlockMonitor Object For Mix Effect Block " + id + " (" + number + ")");
+            Console.sendVerbose("Created MixEffectBlockMonitor Object For Mix Effect Block " + _id + " (" + _number + ")");
         }
 
         //Events
@@ -87,14 +87,14 @@ namespace ATEMVisionSwitcher
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInputAvailabilityMask:
                         if (InputAvailabilityMask != null)
                         {
-                            Console.sendVerbose("Input Availability Mask Has Changed On ME " + _id + " (" + _number + ")");
+                            Console.sendVerbose("Input Availability Mask Has Changed On ME " + _id + " (" + _number + ")"); ;
                             InputAvailabilityMask(this, null);
                         }
                         break;
                     case _BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdInTransition:
                         if (InTransition != null)
                         {
-                            Console.sendVerbose("In Transition Has Changed On ME " + _id + " (" + _number + ")");
+                            Console.sendVerbose("In Transition Has Changed On ME " + _id + " (" + _number + ")"); ;
                             InTransition(this, null);
                         }
                         break;

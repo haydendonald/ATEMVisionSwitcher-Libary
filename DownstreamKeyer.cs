@@ -359,7 +359,7 @@ namespace ATEMVisionSwitcher
                     Console.sendVerbose("Got OnAir From Downstream Keyer " + _id + " (" + _number + ") = " + value);
                     return value == 1;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get PreMultiplied From Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e); return false; }
+                catch (Exception e) { Console.sendError("Could Not Get On Air From Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e); return false; }
             }
             set
             {
