@@ -36,10 +36,12 @@
             this.button.BackColor = System.Drawing.Color.White;
             this.button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button.Location = new System.Drawing.Point(0, 0);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(88, 88);
             this.button.TabIndex = 0;
+            this.button.Text = "HI";
             this.button.UseVisualStyleBackColor = false;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ATEMVisionSwitcher
@@ -95,41 +90,55 @@ namespace ATEMVisionSwitcher
         //Update the button's status (backcolor)
         private void UpdateStatus()
         {
-            button.BackColor = DEFAULT_COLOR;
+            Color colorToSet = DEFAULT_COLOR;
 
             int liveOn = 0;
             int index = 0;
             foreach (MixEffectBlock i in _mixEffectBlocks)
             {
-                if (i.ProgramInput == _input)
-                {
-                    liveOn++;
 
-                    //If we're only live on one ME set it's color
-                    if (liveOn == 1)
-                    {
-                        button.BackColor = LIVE_ME_COLOR[index];
-                    }
-                    else
-                    {
-                        //If we're live on all inputs
-                        Console.WriteLine(_mixEffectBlocks.Count);
-                        if (liveOn == _mixEffectBlocks.Count)
-                        {
-                            button.BackColor = LIVE_COLOR;
-                        }
-                        else
-                        {
-                            button.BackColor = SUB_COLOR;
-                        }
-                    }
+                //Only 1 ME
+                if (_mixEffectBlocks.Count == 1)
+                {
+                    if (i.ProgramInput == _input) { colorToSet = LIVE_COLOR; }
                 }
 
+                //Multiple MEs
+                else
+                {
+                    if (liveOn > 0)
+                    {
+                        if (i.ProgramInput == _input)
+                        {
+                            liveOn++;
 
-                index++;
+                            //Live on all MEs
+                            if (_mixEffectBlocks.Count == liveOn)
+                            {
+                                colorToSet = LIVE_COLOR;
+                            }
+                            //Live on some
+                            else
+                            {
+                                colorToSet = SUB_COLOR;
+                            }
+                        }
+                    }
+                    else if (i.ProgramInput == _input)
+                    {
+                        //Live on a single ME in multiple
+                        liveOn++;
+                        colorToSet = LIVE_ME_COLOR[index];
+                    }
+
+                    index++;
+                }
             }
+
+            button.BackColor = colorToSet;
         }
         
+        //Set the input on the ME(s) program
         private void button_Click(object sender, EventArgs e)
         {
             foreach(MixEffectBlock i in _mixEffectBlocks)
