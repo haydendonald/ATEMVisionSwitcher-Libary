@@ -35,6 +35,7 @@
             // 
             this.button.BackColor = System.Drawing.Color.White;
             this.button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button.Location = new System.Drawing.Point(0, 0);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(88, 88);

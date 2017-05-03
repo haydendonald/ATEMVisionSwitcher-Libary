@@ -189,6 +189,7 @@ namespace ATEMVisionSwitcher
             _object = input;
             _shortName = LongName;
             _longName = ShortName;
+            _monitor = new SwitcherInputMonitor(Console, _longName, _id);
 
             Console.sendVerbose("Created Input Object For Input " + _longName + "(" + _id + ")");
         }

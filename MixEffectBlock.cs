@@ -27,7 +27,36 @@ namespace ATEMVisionSwitcher
         public Boolean InTransition { get { return PropertyIdInTransition == 1; } }
         public Boolean PreviewLive { get { return PropertyIdPreviewLive == 1; } }
         public Input PreviewInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdPreviewInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Preview On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null;  } }
-        public Input ProgramInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdProgramInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Program On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null; } }
+        public Input ProgramInput //Done
+        {
+            get
+            {
+                try
+                {
+                    foreach (Input i in _inputs)
+                    {
+                        if (i.Id == PropertyIdProgramInput)
+                        {
+                            Console.sendVerbose("Got Program Input From ME " + _id + " (" + _number + ") = " + i.LongName);
+                            return i;
+                        }
+                    }
+
+                    return null;
+                }
+                catch (Exception e) { Console.sendError("Could Not Get Program Input From ME " + _id + " (" + _number + ")\nMore Information:\n" + e); return null; }
+            }
+            set
+            {
+                try
+                {
+                    PropertyIdProgramInput = value.Id;
+                }
+                catch (Exception e) { Console.sendError("Could Not Set Program Input On ME " + _id + " (" + _number + ") To Input " + value.LongName + "\nMore Information:\n" + e); }
+            }
+        }
+
+
 
         //Property Ids
         public long PropertyIdFadeToBlackFramesRemaining
@@ -170,7 +199,6 @@ namespace ATEMVisionSwitcher
                 return -1;
             }
         }
-
         public long PropertyIdProgramInput
         {
             get
@@ -183,6 +211,15 @@ namespace ATEMVisionSwitcher
                 }
                 catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdProgramInput From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
+            }
+
+            set
+            {
+                try
+                {
+                    _meBlock.SetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, value);
+                }
+                catch(Exception e) { Console.sendError("Could Not Set Program Input On ME " + _id + " (" + _number + ")\nMore Information\n" + e); }
             }
         }
         public long PropertyIdTransitionFramesRemaining
