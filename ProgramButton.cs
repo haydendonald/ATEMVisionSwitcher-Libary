@@ -18,7 +18,6 @@ namespace ATEMVisionSwitcher
         private List<MixEffectBlock> _mixEffectBlocks;
         private NameType _nameType;
 
-
         public ProgramButton()
         {
             InitializeComponent();
@@ -29,6 +28,7 @@ namespace ATEMVisionSwitcher
         public void SetParameters(SwitcherInput input, MixEffectBlock mixEffectBlock, NameType nameType = NameType.Short)
         {
             _input = input;
+            _mixEffectBlocks = new List<MixEffectBlock> { };
             _mixEffectBlocks.Add(mixEffectBlock);
             _nameType = nameType;
 
@@ -49,6 +49,49 @@ namespace ATEMVisionSwitcher
             UpdateStatus();
         }
 
+        //Set the parameters for the element
+        public void SetParameters(List<MixEffectBlock> mixEffectBlocks)
+        {
+            _mixEffectBlocks = mixEffectBlocks;
+            AddEvents();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(SwitcherInput input, MixEffectBlock mixEffectBlock, NameType nameType = NameType.Short)
+        {
+            _input = input;
+            _mixEffectBlocks = new List<MixEffectBlock> { };
+            _mixEffectBlocks.Add(mixEffectBlock);
+            _nameType = nameType;
+
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(SwitcherInput input, List<MixEffectBlock> mixEffectBlocks, NameType nameType = NameType.Short)
+        {
+            _input = input;
+            _mixEffectBlocks = mixEffectBlocks;
+            _nameType = nameType;
+
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(List<MixEffectBlock> mixEffectBlocks)
+        {
+            _mixEffectBlocks = mixEffectBlocks;
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+        }
+
         //Add the events
         private void AddEvents()
         {
@@ -63,8 +106,14 @@ namespace ATEMVisionSwitcher
                     break;
             }
 
+            UpdateMixEffectBlocks();
+        }
+
+        //Update the mix effect blocks
+        private void UpdateMixEffectBlocks()
+        {
             //Mix effect block events
-            foreach(MixEffectBlock i in _mixEffectBlocks)
+            foreach (MixEffectBlock i in _mixEffectBlocks)
             {
                 i.Monitor.ProgramInput += new EventHandler((s, a) => UpdateStatus());
             }
