@@ -89,7 +89,10 @@ namespace ATEMVisionSwitcher
         private SwitcherInput _input;
         private List<MixEffectBlock> _mixEffectBlocks;
         private NameType _nameType;
+<<<<<<< HEAD
         private Feeds _feeds;
+=======
+>>>>>>> origin/Development
 
         public ProgramButton()
         {
@@ -101,7 +104,12 @@ namespace ATEMVisionSwitcher
         public void SetParameters(SwitcherInput input, MixEffectBlock mixEffectBlock, ATEM_VisionSwitcher switcher, NameType nameType = NameType.Short)
         {
             _input = input;
+<<<<<<< HEAD
             _mixEffectBlocks = new List<MixEffectBlock> { mixEffectBlock };
+=======
+            _mixEffectBlocks = new List<MixEffectBlock> { };
+            _mixEffectBlocks.Add(mixEffectBlock);
+>>>>>>> origin/Development
             _nameType = nameType;
 
             _defaultColor = switcher.DefaultColor;
@@ -163,10 +171,54 @@ namespace ATEMVisionSwitcher
             UpdateStatus();
         }
 
+<<<<<<< HEAD
         //Selected feed has changed
         public void SelectedFeedChanged()
         {
             UpdateMixEffectBlock(_feeds.SelectedFeed.MEBlocks.meBlocks);
+=======
+        //Set the parameters for the element
+        public void SetParameters(List<MixEffectBlock> mixEffectBlocks)
+        {
+            _mixEffectBlocks = mixEffectBlocks;
+            AddEvents();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(SwitcherInput input, MixEffectBlock mixEffectBlock, NameType nameType = NameType.Short)
+        {
+            _input = input;
+            _mixEffectBlocks = new List<MixEffectBlock> { };
+            _mixEffectBlocks.Add(mixEffectBlock);
+            _nameType = nameType;
+
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(SwitcherInput input, List<MixEffectBlock> mixEffectBlocks, NameType nameType = NameType.Short)
+        {
+            _input = input;
+            _mixEffectBlocks = mixEffectBlocks;
+            _nameType = nameType;
+
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+        }
+
+        //Update the parameters for the element
+        public void UpdateParameters(List<MixEffectBlock> mixEffectBlocks)
+        {
+            _mixEffectBlocks = mixEffectBlocks;
+            UpdateMixEffectBlocks();
+            SetText();
+            UpdateStatus();
+>>>>>>> origin/Development
         }
 
         //Add the events
