@@ -1,6 +1,6 @@
 ﻿namespace ATEMVisionSwitcher
 {
-    partial class ProgramButton
+    partial class PreviewButton
     {
         /// <summary> 
         /// Required designer variable.
@@ -44,13 +44,13 @@
             this.button.UseVisualStyleBackColor = false;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
-            // ProgramButton
+            // PreviewButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ProgramButton";
+            this.Name = "PreviewButton";
             this.Size = new System.Drawing.Size(88, 88);
             this.ResumeLayout(false);
 

@@ -151,7 +151,7 @@ namespace ATEMVisionSwitcher
 
         #endregion
 
-        public Inputs(ref DebugConsole debugConsole)
+        public Inputs(DebugConsole debugConsole)
         {
             Console = debugConsole;
             _switcherInputs = new List<SwitcherInput> { };
@@ -159,9 +159,51 @@ namespace ATEMVisionSwitcher
 
             Console.sendVerbose("Created Inputs Object");
         }
+        public Inputs(DebugConsole debugConsole, List<Input> inputs)
+        {
+            Console = debugConsole;
+            _switcherInputs = new List<SwitcherInput> { };
+            _auxInputs = new List<AuxInput> { };
+
+            foreach (Input i in inputs)
+            {
+                if(i.GetType() == typeof(SwitcherInput)) { _switcherInputs.Add((SwitcherInput)i); }
+                if (i.GetType() == typeof(AuxInput)) { _auxInputs.Add((AuxInput)i); }
+            }
+
+            Console.sendVerbose("Created Inputs Object");
+        }
+
+        //Find a switcher input
+        public SwitcherInput FindSwitcherInput(long id)
+        {
+            foreach (SwitcherInput i in _switcherInputs) { if (i.Id == id) { return i; } }
+            return null;
+        }
+
+        //Find a switcher input
+        public long FindSwitcherInput(Input input)
+        {
+            foreach (SwitcherInput i in _switcherInputs) { if (i == input) { return i.Id; } }
+            return -1;
+        }
+
+        //Find a aux input
+        public AuxInput FindAuxInput(long id)
+        {
+            foreach (AuxInput i in _auxInputs) { if (i.Id == id) { return i; } }
+            return null;
+        }
+
+        //Find a aux input
+        public long FindAuxInput(Input input)
+        {
+            foreach (AuxInput i in _auxInputs) { if (i.Input == input) { return i.Id; } }
+            return -1;
+        }
 
         //Discover the inputs
-        public ATEM_VisionSwitcher.Status Discover(ref IBMDSwitcher switcher)
+        public ATEM_VisionSwitcher.Status Discover(IBMDSwitcher switcher)
         {
             Console.sendVerbose("Attempting To Find Inputs");
 
@@ -194,7 +236,7 @@ namespace ATEMVisionSwitcher
                 }
                 else
                 {
-                    _auxInputs.Add(new AuxInput(Console, (IBMDSwitcherInputAux)tempInput));
+                    _auxInputs.Add(new AuxInput(Console, this, (IBMDSwitcherInputAux)tempInput));
 
                     Console.sendVerbose("Found Aux Input " + auxInputIndex + ": " + _auxInputs[auxInputIndex].LongName + " [" + _auxInputs[auxInputIndex].Id + "]");
                     auxInputIndex++;

@@ -28,6 +28,9 @@ namespace ATEMVisionSwitcher
         double MaskTop { get; set; }
         Boolean OnAir { get; set; }
 
+        Boolean SetOnAir();
+        Boolean TakeOffAir();
+        Boolean IsOnAir();
         Boolean Release();
     }
 }

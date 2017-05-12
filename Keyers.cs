@@ -20,7 +20,7 @@ namespace ATEMVisionSwitcher
         List<DownstreamKeyer> _downstreamKeyers;
 
 
-        public Keyers(ref DebugConsole debugConsole)
+        public Keyers(DebugConsole debugConsole)
         {
             Console = debugConsole;
             _upstreamKeyers = new List<UpstreamKeyer> { };
@@ -160,7 +160,7 @@ namespace ATEMVisionSwitcher
         }
 
         //Discover the keyers
-        public ATEM_VisionSwitcher.Status Discover(ref IBMDSwitcher switcher, List<MixEffectBlock> meBlocks)
+        public ATEM_VisionSwitcher.Status Discover(IBMDSwitcher switcher, MixEffectBlocks meBlocks)
         {
             //Get Downstream Keyers
             IBMDSwitcherDownstreamKeyIterator dsIterator = null;
@@ -187,7 +187,7 @@ namespace ATEMVisionSwitcher
 
             //Get the upstream keyers
             int j = 0;
-            foreach(MixEffectBlock i in meBlocks)
+            foreach(MixEffectBlock i in meBlocks.meBlocks)
             {
                 IBMDSwitcherKeyIterator usIterator = null;
                 IntPtr usIteratorPtr;

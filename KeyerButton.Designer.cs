@@ -1,6 +1,6 @@
 ﻿namespace ATEMVisionSwitcher
 {
-    partial class ProgramButton
+    partial class KeyerButton
     {
         /// <summary> 
         /// Required designer variable.

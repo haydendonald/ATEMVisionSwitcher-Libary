@@ -17,27 +17,103 @@ namespace ATEMVisionSwitcher
         public List<MixEffectBlock> meBlocks { get { return _mixEffectBlocks; } }
 
         //Constructor
-        public MixEffectBlocks(ref DebugConsole debugConsole)
+        public MixEffectBlocks(DebugConsole debugConsole)
         {
             Console = debugConsole;
             _mixEffectBlocks = new List<MixEffectBlock> { };
             Console.sendVerbose("Created MixEffectBlocks Object");
         }
+        public MixEffectBlocks(DebugConsole debugConsole, List<MixEffectBlock> mixEffectBlocks)
+        {
+            Console = debugConsole;
+            _mixEffectBlocks = mixEffectBlocks;
+            Console.sendVerbose("Created MixEffectBlocks Object");
+        }
+        public MixEffectBlocks(DebugConsole debugConsole, MixEffectBlock mixEffectBlock)
+        {
+            Console = debugConsole;
+            _mixEffectBlocks = new List<MixEffectBlock> { mixEffectBlock };
+            Console.sendVerbose("Created MixEffectBlocks Object");
+        }
 
         //Change Program
-        public Boolean ChangeProgram(int meId, Input input)
+        public void ChangeProgram(int meId, Input input)
         {
-            return _mixEffectBlocks[meId - 1].ChangeProgram(input);
+            _mixEffectBlocks[meId - 1].ChangeProgram(input);
         }
 
         //Change Preview
-        public Boolean ChangePreview(int meId, Input input)
+        public void ChangePreview(int meId, Input input)
         {
-            return _mixEffectBlocks[meId - 1].ChangePreview(input);
+            _mixEffectBlocks[meId - 1].ChangePreview(input);
+        }
+
+        //Perform auto transition
+        public void PerformAutoTransition()
+        {
+            foreach (MixEffectBlock i in _mixEffectBlocks) { i.PerformAutoTransition(); }
+        }
+
+        //Perform auto transition
+        public void PerformCut()
+        {
+            foreach (MixEffectBlock i in _mixEffectBlocks) { i.PerformCut(); }
+        }
+
+        //Perform auto transition
+        public void PerformFadeToBlack()
+        {
+            foreach (MixEffectBlock i in _mixEffectBlocks) { i.PerformFadeToBlack(); }
+        }
+
+        //Find a mix effect block
+        public MixEffectBlock GetMixEffectBlock(String meID)
+        {
+            foreach(MixEffectBlock i in _mixEffectBlocks)
+            {
+                if(i.Id == meID) { return i; }
+            }
+
+            return null;
+        }
+
+        //Find a mix effect block
+        public MixEffectBlock GetMixEffectBlock(long meNumber)
+        {
+            foreach (MixEffectBlock i in _mixEffectBlocks)
+            {
+                if (i.Number == meNumber) { return i; }
+            }
+
+            return null;
+        }
+
+        //Check if a program input is active
+        public Boolean ProgramInputActive(Input input, List<MixEffectBlock> meBlocks = null)
+        {
+            if(meBlocks == null) { meBlocks = _mixEffectBlocks; }
+            foreach (MixEffectBlock i in meBlocks) { if (i.ProgramInput != input) { return false; } }
+            return true;
+        }
+        public Boolean ProgramInputActive(Input input, MixEffectBlock meBlock)
+        {
+            return meBlock.ProgramInput == input;
+        }
+
+        //Check if an input is active
+        public Boolean PreviewInputActive(Input input, List<MixEffectBlock> meBlocks = null)
+        {
+            if (meBlocks == null) { meBlocks = _mixEffectBlocks; }
+            foreach (MixEffectBlock i in meBlocks) { if (i.PreviewInput != input) { return false; } }
+            return true;
+        }
+        public Boolean PreviewInputActive(Input input, MixEffectBlock meBlock)
+        {
+            return meBlock.PreviewInput == input;
         }
 
         //Discover the mixeffectblocks
-        public ATEM_VisionSwitcher.Status Discover(ref IBMDSwitcher switcher, List<SwitcherInput> inputs)
+        public ATEM_VisionSwitcher.Status Discover(IBMDSwitcher switcher, Inputs inputs)
         {
             Console.sendVerbose("Attempting To Find The Mix Effect Blocks");
 

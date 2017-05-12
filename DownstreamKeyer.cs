@@ -166,7 +166,7 @@ namespace ATEMVisionSwitcher
                 int value = -1;
                 try
                 {
-                    _object.GetInverse(ref value);
+                    _object.GetInverse(out value);
                     Console.sendVerbose("Got Inverse From Downstream Keyer " + _id + " (" + _number + ") = " + value);
                     return value;
                 }
@@ -432,6 +432,42 @@ namespace ATEMVisionSwitcher
                 Console.sendError("Could Not Reset Mask On Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
                 return false;
             }
+        }
+
+        //Set the keyer on air
+        public Boolean SetOnAir()
+        {
+            try
+            {
+                OnAir = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.sendError("Could Not Set On Air On Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
+                return false;
+            }
+        }
+
+        //Take the keyer off air
+        public Boolean TakeOffAir()
+        {
+            try
+            {
+                OnAir = false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.sendError("Could Not Take Off Air On Downstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
+                return false;
+            }
+        }
+
+        //Return true if on air
+        public Boolean IsOnAir()
+        {
+            return OnAir;
         }
     }
 }

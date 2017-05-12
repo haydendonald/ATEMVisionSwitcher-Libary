@@ -10,7 +10,7 @@ namespace ATEMVisionSwitcher
     public class MixEffectBlock
     {
         private IBMDSwitcherMixEffectBlock _meBlock;
-        private List<SwitcherInput> _inputs;
+        private Inputs _inputs;
         private MixEffectBlockMonitor _monitor;
         private String _id;
         private long _number;
@@ -26,37 +26,8 @@ namespace ATEMVisionSwitcher
         public Boolean InFadeToBlack { get { return PropertyIdInFadeToBlack == 1; } }
         public Boolean InTransition { get { return PropertyIdInTransition == 1; } }
         public Boolean PreviewLive { get { return PropertyIdPreviewLive == 1; } }
-        public Input PreviewInput { get { try { foreach (Input i in _inputs) { if (i.Id == PropertyIdPreviewInput) { return i; } } } catch (Exception e) { Console.sendError("Could Not Get Preview On Mix Effect Block " + _id + "\nMore Information:\n" + e); } return null;  } }
-        public Input ProgramInput //Done
-        {
-            get
-            {
-                try
-                {
-                    foreach (Input i in _inputs)
-                    {
-                        if (i.Id == PropertyIdProgramInput)
-                        {
-                            Console.sendVerbose("Got Program Input From ME " + _id + " (" + _number + ") = " + i.LongName);
-                            return i;
-                        }
-                    }
-
-                    return null;
-                }
-                catch (Exception e) { Console.sendError("Could Not Get Program Input From ME " + _id + " (" + _number + ")\nMore Information:\n" + e); return null; }
-            }
-            set
-            {
-                try
-                {
-                    PropertyIdProgramInput = value.Id;
-                }
-                catch (Exception e) { Console.sendError("Could Not Set Program Input On ME " + _id + " (" + _number + ") To Input " + value.LongName + "\nMore Information:\n" + e); }
-            }
-        }
-
-
+        public Input PreviewInput { get { return _inputs.FindSwitcherInput(PropertyIdPreviewInput); } set { PropertyIdPreviewInput = _inputs.FindSwitcherInput(value); } }
+        public Input ProgramInput { get { return _inputs.FindSwitcherInput(PropertyIdProgramInput); } set { PropertyIdProgramInput = _inputs.FindSwitcherInput(value); } }
 
         //Property Ids
         public long PropertyIdFadeToBlackFramesRemaining
@@ -83,7 +54,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdFadeToBlackFullyBlack, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackFullyBlack From Mix Effect Block " + _id); }
+                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdFadeToBlackFullyBlack From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
         }
@@ -163,14 +134,23 @@ namespace ATEMVisionSwitcher
             {
                 try
                 {
-                    long value = -1;
+                    long value;
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdPreviewInput From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Get Preview Input From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
-        }
+
+            set
+            {
+                try
+                {
+                    _meBlock.SetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, value);
+                }
+                catch (Exception e) { Console.sendError("Could Not Set Preview Input On ME " + _id + " (" + _number + ")\nMore Information\n" + e); }
+            }
+        } 
         public long PropertyIdPreviewLive
         {
             get
@@ -209,7 +189,7 @@ namespace ATEMVisionSwitcher
                     _meBlock.GetInt(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, out value);
                     return value;
                 }
-                catch (Exception e) { Console.sendError("Could Not Get bmdSwitcherMixEffectBlockPropertyIdProgramInput From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
+                catch (Exception e) { Console.sendError("Could Not Get Program Input From Mix Effect Block " + _id + " (" + _number + ")\nMore Information\n" + e); }
                 return -1;
             }
 
@@ -252,7 +232,7 @@ namespace ATEMVisionSwitcher
         }
 
         //Constructor
-        public MixEffectBlock(DebugConsole console, IBMDSwitcherMixEffectBlock meBlock, List<SwitcherInput> inputs, long number, String id = "Not Set")
+        public MixEffectBlock(DebugConsole console, IBMDSwitcherMixEffectBlock meBlock, Inputs inputs, long number, String id = "")
         {
             Console = console;
             _meBlock = meBlock;
@@ -265,60 +245,25 @@ namespace ATEMVisionSwitcher
             _inputs = inputs;
         }
 
-        //Get the program
-        public Input GetProgram() { return ProgramInput; }
-
-        //Get the preview
-        public Input GetPreview() { return PreviewInput; }
-
         //Change the program
-        public Boolean ChangeProgram(Input input)
+        public void ChangeProgram(Input input)
         {
-            try
-            {
-                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, input.Id);
-                return true;
-            }
-            catch(Exception e) { Console.sendError("Could Not Change Program Input On Mix Effect Block " + _id + " To Input " + input.LongName + "(" + input.Id + ")\nMore Information:\n" + e); }
-            return false;
+            ProgramInput = input;
+        }
+        public void ChangeProgram(long id)
+        {
+            ProgramInput = _inputs.FindSwitcherInput(id);
         }
 
-        //Change the program
-        public Boolean ChangeProgram(long id)
+        //Change the preview
+        public void ChangePreview(Input input)
         {
-            try
-            {
-                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdProgramInput, id);
-                return true;
-            }
-            catch (Exception e) { Console.sendError("Could Not Change Program Input On Mix Effect Block " + _id + " To Input " + id + "\nMore Information:\n" + e); }
-            return false;
+            PreviewInput = input;
         }
-
-        //Change the program
-        public Boolean ChangePreview(Input input)
+        public void ChangePreview(long id)
         {
-            try
-            {
-                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, input.Id);
-                return true;
-            }
-            catch (Exception e) { Console.sendError("Could Not Change Preview Input On Mix Effect Block " + _id + " To Input " + input.LongName + "(" + input.Id + ")\nMore Information:\n" + e); }
-            return false;
+            PreviewInput = _inputs.FindSwitcherInput(id);
         }
-
-        //Change the program
-        public Boolean ChangePreview(long id)
-        {
-            try
-            {
-                SetPropertyId(_BMDSwitcherMixEffectBlockPropertyId.bmdSwitcherMixEffectBlockPropertyIdPreviewInput, id);
-                return true;
-            }
-            catch (Exception e) { Console.sendError("Could Not Change Preview Input On Mix Effect Block " + _id + " To Input " + id + "\nMore Information:\n" + e); }
-            return false;
-        }
-
 
         //Get a property id
         public long GetPropertyId(_BMDSwitcherMixEffectBlockPropertyId id)
@@ -329,7 +274,7 @@ namespace ATEMVisionSwitcher
                 _meBlock.GetInt(id, out returnValue);
                 return -1;
             }
-            catch (Exception e) { Console.sendError("Could Not Get Int " + id.ToString() + " On Mix Effect Block " + Id + "\nMore Informationj:\n" + e); }
+            catch (Exception e) { Console.sendError("Could Not Get Int " + id.ToString() + " On Mix Effect Block " + Id + "\nMore Information:\n" + e); }
             return returnValue;
         }
 
@@ -341,7 +286,41 @@ namespace ATEMVisionSwitcher
                 _meBlock.SetInt(id, value);
                 return true;
             }
-            catch (Exception e) { Console.sendError("Could Not Set Int " + id.ToString() + " On Mix Effect Block " + Id + "\nMore Informationj:\n" + e); return false; }
+            catch (Exception e) { Console.sendError("Could Not Set Int " + id.ToString() + " On Mix Effect Block " + Id + "\nMore Information:\n" + e); return false; }
+        }
+
+        //Perform an auto transition
+        public Boolean PerformAutoTransition()
+        {
+            try
+            {
+                _meBlock.PerformAutoTransition();
+                Console.sendVerbose("Performed An Auto Transition On Mix Effect Block " + Id);
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Perform An Auto Transition On Mix Effect Block " + Id + "\nMore Information:\n" + e); return false; }
+        }
+
+        //Perform an cut transition
+        public Boolean PerformCut()
+        {
+            try
+            {
+                _meBlock.PerformCut();
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Perform Cut On Mix Effect Block " + Id + "\nMore Information:\n" + e); return false; }
+        }
+
+        //Perform a fade to black
+        public Boolean PerformFadeToBlack()
+        {
+            try
+            {
+                _meBlock.PerformFadeToBlack();
+                return true;
+            }
+            catch (Exception e) { Console.sendError("Could Not Perform Fade To Black On Mix Effect Block " + Id + "\nMore Information:\n" + e); return false; }
         }
     }
 }

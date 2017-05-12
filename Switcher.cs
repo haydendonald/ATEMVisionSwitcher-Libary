@@ -14,6 +14,7 @@ namespace ATEMVisionSwitcher
         private CBMDSwitcherDiscovery _discovery;
         private DebugConsole Console;
         private MixEffectBlocks _mixEffectBlocks;
+        private HyperDecks _hyperdecks;
         private Inputs _inputs;
         private Keyers _keyers;
 
@@ -21,9 +22,19 @@ namespace ATEMVisionSwitcher
         public MixEffectBlocks MixEffectBlocks { get { return _mixEffectBlocks; } }
         public Inputs Inputs { get { return _inputs; } }
         public Keyers Keyers { get { return _keyers; } }
+        public HyperDecks HyperDecks { get { return _hyperdecks; } }
+        public String ProductName
+        {
+            get
+            {
+                String value;
+                _switcher.GetProductName(out value);
+                return value;
+            }
+        }
 
         //Constructor
-        public Switcher(ref DebugConsole debugConsole)
+        public Switcher(DebugConsole debugConsole)
         {
             Console = debugConsole;
 
@@ -36,9 +47,10 @@ namespace ATEMVisionSwitcher
                 Environment.Exit(1);
             }
 
-            _mixEffectBlocks = new MixEffectBlocks(ref Console);
-            _inputs = new Inputs(ref Console);
-            _keyers = new Keyers(ref Console);
+            _mixEffectBlocks = new MixEffectBlocks(Console);
+            _inputs = new Inputs(Console);
+            _keyers = new Keyers(Console);
+            _hyperdecks = new HyperDecks(Console);
 
             Console.sendVerbose("Created Switcher Object");
         }
@@ -73,9 +85,10 @@ namespace ATEMVisionSwitcher
             //We've discovered the switcher!
             Console.sendVerbose("Discovered Switcher");
 
-            if (_inputs.Discover(ref _switcher) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.InputDiscoverFailed; }
-            if ( _mixEffectBlocks.Discover(ref _switcher, _inputs.SwitcherInputs) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.MixEffectBlockDiscoverFailed; }
-            if (_keyers.Discover(ref _switcher, _mixEffectBlocks.meBlocks) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.KeyerDiscoverFailed; }
+            if (_inputs.Discover(_switcher) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.InputDiscoverFailed; }
+            if ( _mixEffectBlocks.Discover(_switcher, _inputs) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.MixEffectBlockDiscoverFailed; }
+            if (_keyers.Discover(_switcher, _mixEffectBlocks) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.KeyerDiscoverFailed; }
+            if (_hyperdecks.Discover(_switcher, _inputs) != ATEM_VisionSwitcher.Status.Success) { return ATEM_VisionSwitcher.Status.HyperDeckDiscoverFailed; }
 
             //And We're Done!
             Console.sendInfo("Connected To Switcher");

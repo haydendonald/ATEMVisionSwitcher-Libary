@@ -47,10 +47,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ATEM_Switcher.cs" />
+    <Compile Include="HyperDeckPlayRecordButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HyperDeckPlayRecordButton.Designer.cs">
+      <DependentUpon>HyperDeckPlayRecordButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FTBButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FTBButton.Designer.cs">
+      <DependentUpon>FTBButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CutButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CutButton.Designer.cs">
+      <DependentUpon>CutButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoButton.Designer.cs">
+      <DependentUpon>AutoButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuxInput.cs" />
     <Compile Include="DebugConsole.cs" />
     <Compile Include="DownstreamKeyer.cs" />
+    <Compile Include="Feed.cs" />
+    <Compile Include="Feeds.cs" />
+    <Compile Include="FeedSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeedSelection.Designer.cs">
+      <DependentUpon>FeedSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HyperDeck.cs" />
+    <Compile Include="HyperDecks.cs" />
     <Compile Include="Keyer.cs" />
+    <Compile Include="KeyerFeed.cs" />
     <Compile Include="Monitors\AuxInputMonitor.cs" />
     <Compile Include="Monitors\DownstreamKeyerMonitor.cs" />
     <Compile Include="Input.cs" />
@@ -58,8 +93,27 @@
     <Compile Include="Keyers.cs" />
     <Compile Include="MixEffectBlock.cs" />
     <Compile Include="MixEffectBlocks.cs" />
+    <Compile Include="Monitors\HyperdeckMonitor.cs" />
     <Compile Include="Monitors\MixEffectBlockMonitor.cs" />
     <Compile Include="Monitors\SwitcherInputMonitor.cs" />
+    <Compile Include="PreviewButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PreviewButton.Designer.cs">
+      <DependentUpon>PreviewButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyerButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KeyerButton.Designer.cs">
+      <DependentUpon>KeyerButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuxButton.Designer.cs">
+      <DependentUpon>AuxButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgramButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +127,30 @@
     <Compile Include="Monitors\UpstreamKeyerMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HyperDeckPlayRecordButton.resx">
+      <DependentUpon>HyperDeckPlayRecordButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FTBButton.resx">
+      <DependentUpon>FTBButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CutButton.resx">
+      <DependentUpon>CutButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoButton.resx">
+      <DependentUpon>AutoButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeedSelection.resx">
+      <DependentUpon>FeedSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewButton.resx">
+      <DependentUpon>PreviewButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyerButton.resx">
+      <DependentUpon>KeyerButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxButton.resx">
+      <DependentUpon>AuxButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgramButton.resx">
       <DependentUpon>ProgramButton.cs</DependentUpon>
     </EmbeddedResource>

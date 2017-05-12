@@ -307,5 +307,41 @@ namespace ATEMVisionSwitcher
             }
             catch(Exception e) { Console.sendError("Could Not Release Upstream Keyer " + _id + " (" + ")" + _number + "\nMore Information:\n" + e); return false; }
         }
+
+        //Set the keyer on air
+        public Boolean SetOnAir()
+        {
+            try
+            {
+                OnAir = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.sendError("Could Not Set On Air On Upstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
+                return false;
+            }
+        }
+
+        //Take the keyer off air
+        public Boolean TakeOffAir()
+        {
+            try
+            {
+                OnAir = false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.sendError("Could Not Take Off Air On Upstream Keyer " + _id + " (" + _number + ")\nMore Information:\n" + e);
+                return false;
+            }
+        }
+
+        //Return true if on air
+        public Boolean IsOnAir()
+        {
+            return OnAir;
+        }
     }
 }

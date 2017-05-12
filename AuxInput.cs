@@ -14,6 +14,7 @@ namespace ATEMVisionSwitcher
     public class AuxInput : Input
     {
         private IBMDSwitcherInputAux _object;
+        private Inputs _inputs;
         private AuxInputMonitor _monitor;
         private DebugConsole Console;
         private String _longName;
@@ -44,6 +45,17 @@ namespace ATEMVisionSwitcher
                     Console.sendVerbose("Set InputSource On AuxInput" + _longName + " (" + _id + ") To " + value);
                 }
                 catch (Exception e) { Console.sendError("Could Not Set InputSource On AuxInput " + _longName + " (" + _id + ") To " + value + "\nMore Information:\n" + e); }
+            }
+        }
+        public Input Input
+        {
+            get
+            {
+                return _inputs.FindSwitcherInput(InputSource);
+            }
+            set
+            {
+                InputSource = _inputs.FindSwitcherInput(value);
             }
         }
         public _BMDSwitcherInputAvailability InputAvailabilityMask
@@ -127,11 +139,13 @@ namespace ATEMVisionSwitcher
         }
 
         //Constructor
-        public AuxInput(DebugConsole console, IBMDSwitcherInputAux input)
+        public AuxInput(DebugConsole console, Inputs inputs, IBMDSwitcherInputAux input)
         {
             Console = console;
             _object = input;
+            _inputs = inputs;
             _monitor = new AuxInputMonitor(Console, LongName, Id);
+            _object.AddCallback(_monitor);
             _shortName = ShortName;
             _longName = LongName;
             _id = Id;

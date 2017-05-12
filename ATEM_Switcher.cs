@@ -1,6 +1,7 @@
 ﻿using System;
-using BMDSwitcherAPI;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 /**
 	ATEM Vision Switcher Libary By Hayden Donald 2017
@@ -19,9 +20,18 @@ namespace ATEMVisionSwitcher
         {
             Unknown, NoResponse, IncompatibleFirmware, Success, Disconnected, Connected, InvalidIPAddress, KeyerDiscoverFailed,
             MixEffectBlockDiscoverFailed, InputDiscoverFailed, AuxInputDiscoverFailed, SwitcherDiscoverFailed, InternalError,
-            InputReleaseFailed, MixEffectBlockReleaseFailed, KeyerReleaseFailed
+            InputReleaseFailed, MixEffectBlockReleaseFailed, KeyerReleaseFailed, HyperDeckDiscoverFailed
         };
         public enum PowerStatus { PSU1Failed, PSU2Failed, Good, Unknown }
+
+        //UI Colors
+        public enum ColorType { Default, Live, LiveME, Preview, PreviewME, Sub };
+        private Color _defaultColor = Color.White;
+        private Color _liveColor = Color.Red;
+        private List<Color> _liveMEColor = new List<Color> { Color.Aqua, Color.BlueViolet };
+        private Color _previewColor = Color.LightGreen;
+        private List<Color> _previewMEColor = new List<Color> { Color.Aqua, Color.BlueViolet };
+        private Color _subColor = Color.Yellow;
 
         private DebugConsole Console;
         public Switcher _switcher;
@@ -32,6 +42,8 @@ namespace ATEMVisionSwitcher
         private PowerStatus _powerStatus;
         private String _ipAddress;
         private String _productName;
+        private String _LibVersion = "Development";
+        private String _ATEMVersion = "7.1.1";
 
         //Properties
         public DebugConsole DebugConsole { get { return Console; } }
@@ -43,12 +55,18 @@ namespace ATEMVisionSwitcher
         public PowerStatus CurrentPowerStatus { get { return _powerStatus; } }
         public String IpAddress { get { return _ipAddress; } }
         public String ProductName { get { return _productName; } }
+        public Color DefaultColor { get { return _defaultColor; } set { _defaultColor = value; } }
+        public Color LiveColor { get { return _liveColor; }set { _liveColor = value; } }
+        public List<Color> LiveMEColor { get { return _liveMEColor; } set { _liveMEColor = value; } }
+        public Color PreviewColor { get { return _previewColor; } set { _previewColor = value; } }
+        public List<Color> PreviewMEColor { get { return _previewMEColor; } set { _previewMEColor = value; } }
+        public Color SubColor { get { return _subColor; } set { _subColor = value; } }
 
         //Constructor
         public ATEM_VisionSwitcher(DebugConsole.DebugLevel debugLevel = DebugConsole.DebugLevel.Important)
         {
             Console = new DebugConsole(debugLevel);
-            _switcher = new Switcher(ref Console);
+            _switcher = new Switcher(Console);
             _inputs = _switcher.Inputs;
             _keyers = _switcher.Keyers;
             _mixEffectBlocks = _switcher.MixEffectBlocks;
@@ -56,6 +74,11 @@ namespace ATEMVisionSwitcher
             _powerStatus = PowerStatus.Unknown;
 
             Console.sendVerbose("Created Vision Switcher Object");
+            Console.sendInfo("ATEM Vision Switcher Libary");
+            Console.sendTabInfo("https://github.com/haydendonald/ATEMVisionSwitcher-Libary");
+            Console.sendTabInfo("");
+            Console.sendTabInfo("Libary Version: " + _LibVersion);
+            Console.sendTabInfo("ATEM Version: " + _ATEMVersion);
         }
 
         //Connect to the switcher
@@ -65,23 +88,25 @@ namespace ATEMVisionSwitcher
 
             //Check if the ip is valid
             if (CheckIPAddress(ipAddress)) {
+                Status status = _switcher.Discover(ipAddress);
 
-                if(_switcher.Discover(ipAddress) == Status.Success)
+                if(status == Status.Success)
                 {
+                    _ipAddress = ipAddress;
+                    _productName = _switcher.ProductName;
                     return Status.Connected;
                 }
+
+                return status;
             }
             else { return Status.InvalidIPAddress; }
-
-            return Status.InternalError;
-
         }
 
         //Disconnect from the switcher
         public Status Disconnect()
         {
             Console.sendInfo("Disconnecting From The Switcher");
-            _switcher = new Switcher(ref Console);
+            _switcher = new Switcher(Console);
             return Status.Success;
         }
 

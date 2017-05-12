@@ -1,6 +1,6 @@
 ﻿namespace ATEMVisionSwitcher
 {
-    partial class ProgramButton
+    partial class AutoButton
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,19 +39,19 @@
             this.button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.button.Location = new System.Drawing.Point(0, 0);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(88, 88);
-            this.button.TabIndex = 0;
+            this.button.Size = new System.Drawing.Size(196, 63);
+            this.button.TabIndex = 1;
+            this.button.Text = "AUTO";
             this.button.UseVisualStyleBackColor = false;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
-            // ProgramButton
+            // AutoButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ProgramButton";
-            this.Size = new System.Drawing.Size(88, 88);
+            this.Name = "AutoButton";
+            this.Size = new System.Drawing.Size(196, 63);
             this.ResumeLayout(false);
 
         }

@@ -20,7 +20,7 @@ namespace ATEMVisionSwitcher
         public DebugConsole(DebugLevel debugLevel)
         {
             _debugLevel = debugLevel;
-        }       
+        }
 
         public void sendVerbose(String text)
         {
