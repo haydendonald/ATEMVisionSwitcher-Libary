@@ -11,7 +11,7 @@ API doing most of the backend processing.
 The project is currently not tested. It is however being developed with a ATEM ME2
 
 ## Planned Support
-Alot of features!
+- Project currently on hold as i'm using Node Red to control our system now. Most of it works as far as i remember, feel free to post any issues you find so if i ever pick it up again i can remember what i was doing :)
 
 ## Known Issues
 There seems to be a issue casting a COM object, however i think its only when sending a command while recieving. Example: You add a event to be called when the program input changes to change the program input. This causes the error.
